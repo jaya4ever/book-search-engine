@@ -33,8 +33,8 @@ const SavedBooks = () => {
         throw new Error("something went wrong!");
       }
       removeBookId(bookId);
-    } catch (err) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -57,9 +57,8 @@ const SavedBooks = () => {
       <Container>
         <h2>
           {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? "book" : "books"
-              }:`
+            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? "book" : "books"
+            }:`
             : "You have no saved books!"}
         </h2>
         <CardColumns>
@@ -85,8 +84,15 @@ const SavedBooks = () => {
                   </Button>
                 </Card.Body>
               </Card>
+
             );
           })}
+
+          {error && (
+            <div className="my-3 p-3 bg-danger text-white">
+              {error.message}
+            </div>
+          )}
         </CardColumns>
       </Container>
     </>
