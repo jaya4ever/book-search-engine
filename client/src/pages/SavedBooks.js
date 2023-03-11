@@ -17,7 +17,7 @@ const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || [];
 
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeBook ] = useMutation(REMOVE_BOOK);
 
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -33,8 +33,8 @@ const SavedBooks = () => {
         throw new Error("something went wrong!");
       }
       removeBookId(bookId);
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -87,12 +87,6 @@ const SavedBooks = () => {
 
             );
           })}
-
-          {error && (
-            <div className="my-3 p-3 bg-danger text-white">
-              {error.message}
-            </div>
-          )}
         </CardColumns>
       </Container>
     </>
